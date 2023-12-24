@@ -41,3 +41,9 @@ O projeto desse repositório foi desenvolvido por [Alura](https://www.alura.com.
 Instrutor: [Rodrigo Ferreira](https://cursos.alura.com.br/user/rodrigo-ferreira)
 
 ---
+
+## ⚙️ Alterações
+
+- [x] Utilizar o padrão DTO para representar os dados que chegam e saem na API;
+- [x] Mover validações de uma entidade JPA para uma classe DTO;
+- [x] Funcionalidades do padrão DTO e as suas vantagens.
