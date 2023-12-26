@@ -15,21 +15,12 @@ public class Tutor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @NotBlank
-    @Column(name = "nome")
     private String nome;
 
-    @NotBlank
-    @Pattern(regexp = "\\(?\\d{2}\\)?\\d?\\d{4}-?\\d{4}")
-    @Column(name = "telefone")
     private String telefone;
 
-    @NotBlank
-    @Email
-    @Column(name = "email")
     private String email;
 
     //Quanto o relacionmamento é toMany por padrão ele já vem lazy
@@ -37,17 +28,13 @@ public class Tutor {
     @JsonManagedReference("tutor_adocoes")
     private List<Adocao> adocoes;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Tutor tutor = (Tutor) o;
-        return Objects.equals(id, tutor.id);
+    public Tutor(String nome, String telefone, String email) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public Tutor() {
     }
 
     public Long getId() {
@@ -88,5 +75,18 @@ public class Tutor {
 
     public void setAdocoes(List<Adocao> adocoes) {
         this.adocoes = adocoes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tutor tutor = (Tutor) o;
+        return Objects.equals(id, tutor.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
