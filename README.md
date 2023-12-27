@@ -4,7 +4,7 @@ Adopet é um site fictício de adoção de pets, com funcionalidades para cadast
 
 ---
 
-## ⚙️ Funcionalidades
+## Funcionalidades
 
 - [x] Cadastro/atualização de tutores;
 - [x] Cadastro de abrigos;
@@ -42,7 +42,7 @@ Instrutor: [Rodrigo Ferreira](https://cursos.alura.com.br/user/rodrigo-ferreira)
 
 ---
 
-## ⚙️ Alterações
+## Alterações
 
 - [x] Utilizar o padrão DTO para representar os dados que chegam e saem na API;
 - [x] Mover validações de uma entidade JPA para uma classe DTO;
