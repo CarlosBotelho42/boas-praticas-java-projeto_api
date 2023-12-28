@@ -48,31 +48,6 @@ public class AbrigoService {
                 .toList();
     }
 
-    public void cadastrarPet(String idOuNome, PetsDTO dto) {
-        Pet pet = new Pet();
-
-        try {
-            Abrigo abrigo = abrigoRepositoy.getReferenceById(dto.id());
-            cadastroDePetNoAbrigo(pet, abrigo);
-
-        } catch (NumberFormatException nfe) {
-            try {
-                Abrigo abrigo = carregarAbrigo(idOuNome);
-                cadastroDePetNoAbrigo(pet, abrigo);
-
-            } catch (EntityNotFoundException e) {
-                throw new ValidacaoException("Não foram encontrados abrigos com esse id ou nome");
-            }
-        }
-    }
-
-    private void cadastroDePetNoAbrigo(Pet pet, Abrigo abrigo) {
-        pet.setAbrigo(abrigo);
-        pet.setAdotado(false);
-        abrigo.getPets().add(pet);
-        abrigoRepositoy.save(abrigo);
-    }
-
     public Abrigo carregarAbrigo(String idOuNome) {
         Optional<Abrigo> optional;
 

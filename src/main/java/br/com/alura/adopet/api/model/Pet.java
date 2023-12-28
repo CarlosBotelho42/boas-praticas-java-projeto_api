@@ -1,5 +1,6 @@
 package br.com.alura.adopet.api.model;
 
+import br.com.alura.adopet.api.dto.PetsDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -15,25 +16,12 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @NotNull
     private TipoPet tipo;
-
-    @NotBlank
     private String nome;
-
-    @NotBlank
     private String raca;
-
-    @NotNull
     private Integer idade;
-
-    @NotBlank
     private String cor;
-
-    @NotNull
     private Float peso;
-
     private Boolean adotado;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,12 +30,15 @@ public class Pet {
     @OneToOne(mappedBy = "pet", fetch = FetchType.LAZY)
     private Adocao adocao;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pet pet = (Pet) o;
-        return Objects.equals(id, pet.id);
+    public Pet(PetsDTO dto, Abrigo abrigo) {
+        this.tipo = dto.tipo();
+        this.nome = dto.nome();
+        this.raca = dto.raca();
+        this.idade = dto.idade();
+        this.cor = dto.cor();
+        this.peso = dto.peso();
+        this.adotado = false;
+        this.abrigo = abrigo;
     }
 
     @Override
@@ -133,5 +124,13 @@ public class Pet {
 
     public void setAdocao(Adocao adocao) {
         this.adocao = adocao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pet pet = (Pet) o;
+        return Objects.equals(id, pet.id);
     }
 }

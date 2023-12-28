@@ -73,7 +73,7 @@ public class AbrigoController {
 
         try {
             Abrigo abrigo = abrigoService.carregarAbrigo(idOuNome);
-            abrigoService.cadastrarPet(String.valueOf(abrigo), dto);
+            petService.cadastrarPet(abrigo, dto);
             return ResponseEntity.ok().build();
 
         } catch (ValidationException e) {

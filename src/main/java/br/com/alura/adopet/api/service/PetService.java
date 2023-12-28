@@ -1,6 +1,8 @@
 package br.com.alura.adopet.api.service;
 
 import br.com.alura.adopet.api.dto.PetsDTO;
+import br.com.alura.adopet.api.model.Abrigo;
+import br.com.alura.adopet.api.model.Pet;
 import br.com.alura.adopet.api.repository.PetRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,9 @@ public class PetService {
                 .map(PetsDTO::new)
                 .toList();
 
+    }
+
+    public void cadastrarPet(Abrigo abrigo, PetsDTO dto) {
+        petRepository.save(new Pet(dto, abrigo));
     }
 }
