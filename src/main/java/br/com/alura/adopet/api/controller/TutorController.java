@@ -1,5 +1,6 @@
 package br.com.alura.adopet.api.controller;
 
+import br.com.alura.adopet.api.dto.AtualizarTutorDTO;
 import br.com.alura.adopet.api.dto.TutorDTO;
 import br.com.alura.adopet.api.excpetion.ValidacaoException;
 import br.com.alura.adopet.api.model.Tutor;
@@ -32,11 +33,16 @@ public class TutorController {
         }
     }
 
-//    @PutMapping
-//    @Transactional
-//    public ResponseEntity<String> atualizar(@RequestBody @Valid Tutor tutor) {
-//        repository.save(tutor);
-//        return ResponseEntity.ok().build();
-//    }
+    @PutMapping
+    @Transactional
+    public ResponseEntity<String> atualizar(@RequestBody @Valid AtualizarTutorDTO dto) {
 
+        try {
+            this.tutorService.atualizar(dto);
+            return ResponseEntity.ok("Atualização realizada com sucesso");
+
+        } catch (ValidacaoException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

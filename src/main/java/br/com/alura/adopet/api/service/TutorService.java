@@ -1,9 +1,11 @@
 package br.com.alura.adopet.api.service;
 
+import br.com.alura.adopet.api.dto.AtualizarTutorDTO;
 import br.com.alura.adopet.api.dto.TutorDTO;
 import br.com.alura.adopet.api.excpetion.ValidacaoException;
 import br.com.alura.adopet.api.model.Tutor;
 import br.com.alura.adopet.api.repository.TutorRepository;
+import ch.qos.logback.core.net.server.Client;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,6 +28,11 @@ public class TutorService {
         Tutor tutor = new Tutor(dto.nome(), dto.telefone(), dto.email());
         tutorRepository.save(tutor);
 
+    }
+
+    public void atualizar(AtualizarTutorDTO dto){
+        Tutor tutor = tutorRepository.getReferenceById(dto.id());
+        tutor.atualizarDados(dto);
     }
 
 
