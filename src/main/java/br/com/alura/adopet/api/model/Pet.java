@@ -41,6 +41,9 @@ public class Pet {
         this.abrigo = abrigo;
     }
 
+    public Pet() {
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);

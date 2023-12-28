@@ -50,20 +50,15 @@ public class AbrigoController {
     }
 
     @GetMapping("/{idOuNome}/pets")
-    public ResponseEntity<List<Pet>> listarPets(@PathVariable String idOuNome) {
+    public ResponseEntity<List<PetsDTO>> listarPets(@PathVariable String idOuNome) {
+
         try {
-            Long id = Long.parseLong(idOuNome);
-            List<Pet> pets = repository.getReferenceById(id).getPets();
-            return ResponseEntity.ok(pets);
-        } catch (EntityNotFoundException enfe) {
+            List<PetsDTO> petsDoAbrigo = abrigoService.listarPetsDoAbrigo(idOuNome);
+            return ResponseEntity.ok(petsDoAbrigo);
+
+        } catch (ValidationException e) {
             return ResponseEntity.notFound().build();
-        } catch (NumberFormatException e) {
-            try {
-                List<Pet> pets = repository.findByNome(idOuNome).getPets();
-                return ResponseEntity.ok(pets);
-            } catch (EntityNotFoundException enfe) {
-                return ResponseEntity.notFound().build();
-            }
+
         }
     }
 

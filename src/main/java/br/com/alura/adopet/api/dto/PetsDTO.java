@@ -8,11 +8,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record PetsDTO(
-        Long id,
         @Enumerated(EnumType.STRING)
         @NotNull
         TipoPet tipo,
-
 
         @NotBlank
         String nome,
@@ -20,7 +18,7 @@ public record PetsDTO(
         @NotBlank
         String raca,
 
-        @NotBlank
+        @NotNull
         Integer idade,
 
         @NotBlank
@@ -30,6 +28,6 @@ public record PetsDTO(
         Float peso) {
 
     public PetsDTO(Pet pet){
-        this(pet.getId(), pet.getTipo(), pet.getNome(), pet.getRaca(), pet.getIdade(), pet.getCor(), pet.getPeso());
+        this(pet.getTipo(), pet.getNome(), pet.getRaca(), pet.getIdade(), pet.getCor(), pet.getPeso());
     }
 }

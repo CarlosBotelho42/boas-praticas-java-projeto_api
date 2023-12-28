@@ -31,6 +31,7 @@ As seguintes tecnologias foram utilizadas no desenvolvimento da API Rest do proj
 - **[MySQL](https://www.mysql.com)**
 - **[Hibernate](https://hibernate.org)**
 - **[Flyway](https://flywaydb.org)**
+- **[H2 Database](https://flywaydb.org)**
 
 ---
 

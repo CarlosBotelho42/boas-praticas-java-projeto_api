@@ -50,15 +50,25 @@ public class AbrigoService {
 
     public Abrigo carregarAbrigo(String idOuNome) {
         Optional<Abrigo> optional;
-
         try {
             Long id = Long.parseLong(idOuNome);
             optional = abrigoRepositoy.findById(id);
 
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             optional = Optional.ofNullable(abrigoRepositoy.findByNome(idOuNome));
         }
 
         return optional.orElseThrow(() -> new ValidacaoException("Abrigo não encontrado"));
+    }
+
+    public List<PetsDTO> listarPetsDoAbrigo(String idOuNome) {
+
+        Abrigo abrigo = carregarAbrigo(idOuNome);
+
+        return petRepository
+                .findByAbrigo(abrigo)
+                .stream()
+                .map(PetsDTO::new)
+                .toList();
     }
 }

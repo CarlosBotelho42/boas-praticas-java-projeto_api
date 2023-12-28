@@ -31,6 +31,9 @@ public class Abrigo {
         this.email = email;
     }
 
+    public Abrigo() {
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);
