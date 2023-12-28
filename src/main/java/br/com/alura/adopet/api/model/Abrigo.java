@@ -15,33 +15,20 @@ public class Abrigo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @NotBlank
-    @Column(name = "nome")
     private String nome;
-
-    @NotBlank
-    @Pattern(regexp = "\\(?\\d{2}\\)?\\d?\\d{4}-?\\d{4}")
-    @Column(name = "telefone")
     private String telefone;
-
-    @NotBlank
-    @Email
-    @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "abrigo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "abrigo", cascade = CascadeType.ALL)
     @JsonManagedReference("abrigo_pets")
     private List<Pet> pets;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Abrigo abrigo = (Abrigo) o;
-        return Objects.equals(id, abrigo.id);
+    public Abrigo(String nome, String telefone, String email) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
     }
 
     @Override
@@ -87,5 +74,13 @@ public class Abrigo {
 
     public void setPets(List<Pet> pets) {
         this.pets = pets;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Abrigo abrigo = (Abrigo) o;
+        return Objects.equals(id, abrigo.id);
     }
 }

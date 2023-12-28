@@ -1,6 +1,6 @@
 package br.com.alura.adopet.api.service;
 
-import br.com.alura.adopet.api.dto.PestDTO;
+import br.com.alura.adopet.api.dto.PetsDTO;
 import br.com.alura.adopet.api.repository.PetRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +15,12 @@ public class PetService {
         this.petRepository = petRepository;
     }
 
-    public List<PestDTO> listarTodosDisponiveis(){
+    public List<PetsDTO> listarTodosDisponiveis(){
 
         return petRepository
                 .findAllByAdotadoFalse()
                 .stream()
-                .map(PestDTO::new)
+                .map(PetsDTO::new)
                 .toList();
 
     }
