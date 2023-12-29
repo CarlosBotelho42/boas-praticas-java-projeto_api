@@ -1,5 +1,6 @@
 package br.com.alura.adopet.api.model;
 
+import br.com.alura.adopet.api.dto.AbrigoDTO;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -25,10 +26,10 @@ public class Abrigo {
     @JsonManagedReference("abrigo_pets")
     private List<Pet> pets;
 
-    public Abrigo(String nome, String telefone, String email) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
+    public Abrigo(AbrigoDTO abrigoDTO) {
+        this.nome = abrigoDTO.nome();
+        this.telefone = abrigoDTO.telefone();
+        this.email = abrigoDTO.email();
     }
 
     public Abrigo() {

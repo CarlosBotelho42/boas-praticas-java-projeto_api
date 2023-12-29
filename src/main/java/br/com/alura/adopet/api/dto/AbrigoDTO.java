@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Pattern;
 
 public record AbrigoDTO(
 
-        Long id,
         @NotBlank
         String nome,
 
@@ -19,5 +18,5 @@ public record AbrigoDTO(
         @Email
         String email
 ) {
-        public AbrigoDTO(Abrigo abrigo){this(abrigo.getId(), abrigo.getNome(), abrigo.getTelefone(), abrigo.getEmail());}
+        public AbrigoDTO(Abrigo abrigo){this(abrigo.getNome(), abrigo.getTelefone(), abrigo.getEmail());}
 }

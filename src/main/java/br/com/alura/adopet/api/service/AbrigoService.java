@@ -4,12 +4,8 @@ import br.com.alura.adopet.api.dto.AbrigoDTO;
 import br.com.alura.adopet.api.dto.PetsDTO;
 import br.com.alura.adopet.api.excpetion.ValidacaoException;
 import br.com.alura.adopet.api.model.Abrigo;
-import br.com.alura.adopet.api.model.Pet;
 import br.com.alura.adopet.api.repository.AbrigoRepository;
 import br.com.alura.adopet.api.repository.PetRepository;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.validation.ValidationException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,7 +31,7 @@ public class AbrigoService {
             throw new ValidacaoException("Dados já cadastrados para outro abrigo!");
         }
 
-        Abrigo abrigo = new Abrigo(dto.nome(), dto.telefone(), dto.email());
+        Abrigo abrigo = new Abrigo(dto);
         abrigoRepositoy.save(abrigo);
 
     }
