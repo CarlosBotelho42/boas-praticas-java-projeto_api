@@ -30,16 +30,14 @@ public class CalculadoraProbabilidadeAdocao {
         // penalizando pelo peso muito alto
         if (tipo == TipoPet.CACHORRO && peso > 15) {
             nota -= 2;
-        }
-        if (tipo == TipoPet.GATO && peso > 10) {
+        } else if (tipo == TipoPet.GATO && peso > 10) {
             nota -= 2;
         }
 
         // penalizando pela idade avançada
         if (idade >= 15) {
             nota -= 5;
-        }
-        if (idade >= 10) {
+        } else if (idade >= 10) {
             nota -= 4;
         }
 

@@ -64,4 +64,30 @@ class CalculadoraProbabilidadeAdocaoTest {
         Assertions.assertEquals(ProbabilidadeAdocao.MEDIA, probabilidade);
 
     }
+
+    @Test
+    void cenario03(){
+        //idade 15 peso 11kg = BAIXA
+
+        Abrigo abrigo = new Abrigo(new AbrigoDTO(
+                "Abrigo do carlao",
+                "09999999999",
+                "carlos@abrigo.com"
+        ));
+
+        Pet pet = new Pet(new PetsDTO(
+                TipoPet.GATO,
+                "Yummi",
+                "vira lata",
+                15,
+                "CinzaBranco",
+                11.0f
+        ),abrigo);
+
+        CalculadoraProbabilidadeAdocao calculadora =  new CalculadoraProbabilidadeAdocao();
+        ProbabilidadeAdocao probabilidade =  calculadora.calcular(pet);
+
+        Assertions.assertEquals(ProbabilidadeAdocao.BAIXA, probabilidade);
+
+    }
 }
