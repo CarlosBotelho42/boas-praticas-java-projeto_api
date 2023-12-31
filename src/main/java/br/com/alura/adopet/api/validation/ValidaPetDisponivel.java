@@ -4,16 +4,14 @@ import br.com.alura.adopet.api.dto.SolicitacaoAdocaoDTO;
 import br.com.alura.adopet.api.excpetion.ValidacaoException;
 import br.com.alura.adopet.api.model.Pet;
 import br.com.alura.adopet.api.repository.PetRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ValidaPetDisponivel implements ValidacaoSolicitacaoAdocao {
 
-    private final PetRepository petRepository;
-
-    public ValidaPetDisponivel(PetRepository petRepository) {
-        this.petRepository = petRepository;
-    }
+    @Autowired
+    private PetRepository petRepository;
 
     public void validar(SolicitacaoAdocaoDTO dto){
 

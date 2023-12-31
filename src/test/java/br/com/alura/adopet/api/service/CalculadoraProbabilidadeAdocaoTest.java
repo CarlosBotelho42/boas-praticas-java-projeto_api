@@ -7,6 +7,7 @@ import br.com.alura.adopet.api.model.Pet;
 import br.com.alura.adopet.api.model.ProbabilidadeAdocao;
 import br.com.alura.adopet.api.model.TipoPet;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,9 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculadoraProbabilidadeAdocaoTest {
 
     @Test
-    void cenario01(){
-        //idade 4 peso kg = ALTA
+    @DisplayName("Probabilidade de adocao alta para idade baixa e peso baixo")
+    void deveriaRetornarAlta(){
+        //idade 4 peso 3 kg = ALTA
 
+        //ARRANGE
         Abrigo abrigo = new Abrigo(new AbrigoDTO(
                 "Abrigo do carlao",
                 "09999999999",
@@ -32,16 +35,19 @@ class CalculadoraProbabilidadeAdocaoTest {
                 3.0f
         ),abrigo);
 
+        //ACT
         CalculadoraProbabilidadeAdocao calculadora =  new CalculadoraProbabilidadeAdocao();
         ProbabilidadeAdocao probabilidade =  calculadora.calcular(pet);
 
+        //ASSERT
         Assertions.assertEquals(ProbabilidadeAdocao.ALTA, probabilidade);
 
     }
 
     @Test
-    void cenario02(){
-        //idade 15 peso 4kg = MEDIA
+    @DisplayName("Probabilidade de adocao alta para idade alta e peso baixo")
+    void deveriaRetornarMedia(){
+        //idade 15 peso 4 kg = MEDIA
 
         Abrigo abrigo = new Abrigo(new AbrigoDTO(
                 "Abrigo do carlao",
@@ -66,8 +72,9 @@ class CalculadoraProbabilidadeAdocaoTest {
     }
 
     @Test
-    void cenario03(){
-        //idade 15 peso 11kg = BAIXA
+    @DisplayName("Probabilidade de adocao alta para idade alta e peso alto")
+    void deveriaRetornarBaixa(){
+        //idade 15 peso 11 kg = BAIXA
 
         Abrigo abrigo = new Abrigo(new AbrigoDTO(
                 "Abrigo do carlao",
