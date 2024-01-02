@@ -31,8 +31,7 @@ public class AbrigoService {
             throw new ValidacaoException("Dados já cadastrados para outro abrigo!");
         }
 
-        Abrigo abrigo = new Abrigo(dto);
-        abrigoRepositoy.save(abrigo);
+        abrigoRepositoy.save(new Abrigo(dto));
 
     }
 
