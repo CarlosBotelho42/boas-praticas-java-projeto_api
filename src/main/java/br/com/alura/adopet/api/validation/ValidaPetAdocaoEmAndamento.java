@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class validaPetAdocaoEmAndamento implements ValidacaoSolicitacaoAdocao {
+public class ValidaPetAdocaoEmAndamento implements ValidacaoSolicitacaoAdocao {
 
     private final AdocaoRepository adocaoRepository;
 
-    public validaPetAdocaoEmAndamento(AdocaoRepository adocaoRepository) {
+    public ValidaPetAdocaoEmAndamento(AdocaoRepository adocaoRepository) {
         this.adocaoRepository = adocaoRepository;
 
     }
