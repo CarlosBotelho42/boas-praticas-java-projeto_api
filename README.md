@@ -47,4 +47,14 @@ Instrutor: [Rodrigo Ferreira](https://cursos.alura.com.br/user/rodrigo-ferreira)
 
 - [x] Utilizar o padrão DTO para representar os dados que chegam e saem na API;
 - [x] Mover validações de uma entidade JPA para uma classe DTO;
-- [x] Funcionalidades do padrão DTO e as suas vantagens.
+- [x] Funcionalidades do padrão DTO e as suas vantagens;
+- [x] Testar uma classe que possui dependências;
+- [x] Declarar mocks com a anotação @Mock do Mockito;
+- [x] Indicar atributos a serem instanciados e ter suas dependências substituídas pelos mocks, via anotação @InjectMocks;
+- [x] Manipular comportamentos de objetos mocks com o Mockito, via método BDDMockito.given;
+- [x] Testar uma classe Service, que coordena o fluxo de regras de negócio na aplicação;
+- [x] Utilizar o recurso de ArgumentCaptor, do Mockito, para recuperar parâmetros em mocks;
+- [x] Utilizar um spy no Mockito e sua diferença em relação a um mock;
+- [x] Escrever testes automatizados de uma classe Controller utilizando o Spring;
+- [x] Simular requisições na API com o uso da classe MockMvc do Spring;
+- [x] Verificar os retornos da API nos testes automatizados.
