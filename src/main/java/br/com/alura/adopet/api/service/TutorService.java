@@ -25,8 +25,7 @@ public class TutorService {
             throw new ValidacaoException("Dados já cadastrados para outro tutor!");
         }
 
-        Tutor tutor = new Tutor(dto.nome(), dto.telefone(), dto.email());
-        tutorRepository.save(tutor);
+        tutorRepository.save(new Tutor(dto));
 
     }
 

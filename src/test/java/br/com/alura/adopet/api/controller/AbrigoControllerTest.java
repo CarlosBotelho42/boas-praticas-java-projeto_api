@@ -11,10 +11,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -26,14 +29,49 @@ class AbrigoControllerTest {
     @MockBean
     private AbrigoService abrigoService;
 
-    @Mock
+    @MockBean
     private PetService petService;
 
-    @Test
-    @DisplayName("Retorna codigo 400 para uma solicitação do tutor com erros")
-    void deveriaRetornar400() throws Exception{
 
-        String json = "{}";
+    @Test
+    void deveriaRetornar200ParaListarAbrigos() throws Exception {
+        //ACT
+        MockHttpServletResponse response = mvc.perform(
+                get("/abrigos")
+        ).andReturn().getResponse();
+
+        //ASSERT
+        assertEquals(200,response.getStatus());
+    }
+
+    @Test
+    void deveriaRetornar200ParaCadastrarAbrigo() throws Exception {
+
+        String json = """
+                {
+                    "nome": "petz",
+                    "telefone": "(34)9090-9090",
+                    "email": "petz@testando.com.br"
+                }
+                """;
+
+        MockHttpServletResponse response = mvc.perform(
+                post("/abrigos")
+                        .content(json)
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andReturn().getResponse();
+
+        assertEquals(200,response.getStatus());
+    }
+
+    @Test
+    void deveriaRetornar400ParaCadastrarAbrigo() throws Exception{
+
+        String json = """
+                {
+                 
+                }
+                """;
 
         var response = mvc.perform(
                 MockMvcRequestBuilders
@@ -44,6 +82,79 @@ class AbrigoControllerTest {
 
         Assertions.assertEquals(400, response.getStatus());
 
+    }
+
+    @Test
+    void deveriaRetornar200ParaListarPetsAbrigo() throws Exception{
+
+        String idOuNome = "petz";
+
+        var response = mvc.perform(
+                MockMvcRequestBuilders
+                        .get("/abrigos/{idOuNome}/pets", idOuNome)
+        ).andReturn().getResponse();
+
+        Assertions.assertEquals(200, response.getStatus());
+
+    }
+
+    @Test
+    void deveriaRetornar400ParaListarPetsAbrigo() throws Exception{
+
+        String idOuNome = "";
+
+        var response = mvc.perform(
+                MockMvcRequestBuilders
+                        .get("/abrigos/{idOuNome}/pets", idOuNome)
+        ).andReturn().getResponse();
+
+        Assertions.assertEquals(404, response.getStatus());
+
+    }
+
+    @Test
+    void deveriaRetornar200ParaCadastrarPetsNoAbrigo() throws Exception {
+
+        String json = """
+                {
+                    "tipo": "GATO",
+                    "nome": "Luke",
+                    "raca": "vira lata",
+                    "idade": 4,
+                    "cor": "Preto",
+                    "peso": 6.3
+                }
+                """;
+
+        String idOuNome = "petz";
+
+        MockHttpServletResponse response = mvc.perform(
+                post("/abrigos/{idOuNome}/pets", idOuNome)
+                        .content(json)
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andReturn().getResponse();
+
+        assertEquals(200,response.getStatus());
+    }
+
+    @Test
+    void deveriaRetornar400ParaCadastrarPetsNoAbrigo() throws Exception {
+
+        String json = """
+                {
+                
+                }
+                """;
+
+        String idOuNome = "ptez";
+
+        MockHttpServletResponse response = mvc.perform(
+                post("/abrigos/{idOuNome}/pets", idOuNome)
+                        .content(json)
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andReturn().getResponse();
+
+        assertEquals(400,response.getStatus());
     }
 
 }

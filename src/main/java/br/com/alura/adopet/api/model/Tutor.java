@@ -30,19 +30,13 @@ public class Tutor {
     @JsonManagedReference("tutor_adocoes")
     private List<Adocao> adocoes;
 
-    public Tutor(String nome, String telefone, String email) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-    }
-
-    public Tutor() {
-    }
-
     public Tutor(TutorDTO dto) {
         this.nome = dto.nome();
         this.telefone = dto.telefone();
         this.email = dto.email();
+    }
+
+    public Tutor() {
     }
 
     public Long getId() {
