@@ -22,7 +22,7 @@ public class TutorController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<String> cadastrar(@RequestBody TutorDTO dto) {
+    public ResponseEntity<String> cadastrar(@Valid @RequestBody TutorDTO dto) {
 
         try {
             this.tutorService.cadastrar(dto);
