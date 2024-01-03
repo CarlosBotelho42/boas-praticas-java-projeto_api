@@ -39,6 +39,12 @@ public class Tutor {
     public Tutor() {
     }
 
+    public Tutor(TutorDTO dto) {
+        this.nome = dto.nome();
+        this.telefone = dto.telefone();
+        this.email = dto.email();
+    }
+
     public Long getId() {
         return id;
     }
