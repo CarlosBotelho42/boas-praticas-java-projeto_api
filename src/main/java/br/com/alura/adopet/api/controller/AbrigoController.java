@@ -47,7 +47,6 @@ public class AbrigoController {
             return ResponseEntity.badRequest().body(e.getMessage());
 
         }
-
     }
 
     @GetMapping("/{idOuNome}/pets")
